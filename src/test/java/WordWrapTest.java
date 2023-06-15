@@ -46,4 +46,10 @@ public class WordWrapTest {
         assertEquals("ho\nla", result);
     }
 
+    @Test
+    public void should_put_new_line_in_whitespaces() throws NegativeNumberException {
+        String result = wordWrap.wordWrap("hola mundo", 7);
+        assertEquals("hola\nmundo", result);
+    }
+
 }

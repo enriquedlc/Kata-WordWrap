@@ -9,32 +9,37 @@ public class WordWrap {
     }
 
     public String wordWrap(String text, int columnLength) throws NegativeNumberException {
-        if (isNullOrEmpty(text)) {
-            return "";
-        }
-
-        if (columnLength < 0) {
-            throw new NegativeNumberException("Negative column width is not valid");
-        }
+        if (isNullOrEmpty(text)) return "";
+        if (columnLength < 0) throw new NegativeNumberException("Negative column width is not valid");
 
         StringBuilder wrappedText = new StringBuilder();
         int startIndex = 0;
 
         while (startIndex < text.length()) {
-            if (startIndex + columnLength <= text.length()) {
-                wrappedText.append(text, startIndex, startIndex + columnLength);
-                startIndex += columnLength;
+            int endIndex = startIndex + columnLength;
+            if (endIndex >= text.length()) {
+                endIndex = text.length();
             } else {
-                wrappedText.append(text.substring(startIndex));
-                startIndex = text.length();
+                while (endIndex > startIndex && !Character.isWhitespace(text.charAt(endIndex - 1))) {
+                    endIndex--;
+                }
+                if (endIndex == startIndex) {
+                    endIndex = startIndex + columnLength;
+                } else {
+                    while (endIndex < text.length() && Character.isWhitespace(text.charAt(endIndex))) {
+                        endIndex++;
+                    }
+                }
             }
+
+            wrappedText.append(text, startIndex, endIndex);
+            startIndex = endIndex;
 
             if (startIndex < text.length()) {
                 wrappedText.append(NEW_LINE);
             }
         }
 
-        return wrappedText.toString();
+        return wrappedText.toString().replace(" ", "");
     }
-
 }

@@ -34,4 +34,10 @@ public class WordWrapTest {
         assertEquals("", result);
     }
 
+    @Test
+    public void should_return_same_string_if_column_length_is_greater_than_string_length() throws NegativeNumberException {
+        String result = wordWrap.wordWrap(HOLA, 10);
+        assertEquals(HOLA, result);
+    }
+
 }

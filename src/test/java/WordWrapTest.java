@@ -28,4 +28,10 @@ public class WordWrapTest {
         assertEquals("", result);
     }
 
+    @Test
+    public void should_return_empty_string_if_null_value_is_given() throws NegativeNumberException {
+        String result = wordWrap.wordWrap(null, 2);
+        assertEquals("", result);
+    }
+
 }

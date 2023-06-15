@@ -40,4 +40,10 @@ public class WordWrapTest {
         assertEquals(HOLA, result);
     }
 
+    @Test
+    public void should_return_string_with_new_line_if_column_length_is_between_to_string_length() throws NegativeNumberException {
+        String result = wordWrap.wordWrap(HOLA, 2);
+        assertEquals("ho\nla", result);
+    }
+
 }

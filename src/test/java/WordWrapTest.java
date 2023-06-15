@@ -22,4 +22,10 @@ public class WordWrapTest {
         }).getMessage());
     }
 
+    @Test
+    public void should_return_empty_string_if_empty_string_is_given() throws NegativeNumberException {
+        String result = wordWrap.wordWrap("", 2);
+        assertEquals("", result);
+    }
+
 }
